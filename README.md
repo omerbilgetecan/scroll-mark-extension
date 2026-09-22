@@ -58,3 +58,5 @@ my_Extension/
 
 - **Blacklist Domains**: Go to Settings tab in the popup to customize behavior.
 - **Styling**: All popup styles are customizable in `popup.css` using standard CSS variables (`:root`).
+
+-Made by Antigravity
