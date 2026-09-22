@@ -1,5 +1,7 @@
 # 📍 ScrollMark - Chrome Extension (Manifest V3)
 
+<img width="400" height="550" alt="Screenshot_3" src="https://github.com/user-attachments/assets/229df6bd-ba7b-4523-a5df-fd2fe550e2a9" />
+
 **ScrollMark** is a sleek, modern Chrome Extension designed to save and restore your reading position across any website when you click **"Save Mark"**. Drop custom scroll pins with notes, view reading progress, and jump back to where you left off instantly!
 
 ---
