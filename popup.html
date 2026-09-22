@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScrollMark</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <div class="brand-icon">📍</div>
+      <span class="brand-name">ScrollMark</span>
+    </div>
+    <div class="header-right">
+      <div class="site-badge" id="active-domain">Detecting tab...</div>
+      <label class="master-power-switch" title="Turn Extension ON / OFF">
+        <input type="checkbox" id="master-toggle" checked>
+        <span class="power-slider">
+          <span class="power-dot"></span>
+        </span>
+      </label>
+    </div>
+  </header>
+
+  <!-- Disabled Banner -->
+  <div id="disabled-banner" class="disabled-banner" style="display: none;">
+    <span>⏸️ ScrollMark is currently turned OFF</span>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <nav class="nav-tabs">
+    <button class="nav-tab active" data-tab="tab-active">🎯 Active Tab</button>
+    <button class="nav-tab" data-tab="tab-saved">📚 Saved Sites</button>
+    <button class="nav-tab" data-tab="tab-settings">⚙️ Settings</button>
+  </nav>
+
+  <!-- Tab 1: Active Tab -->
+  <main class="tab-content active" id="tab-active">
+    <div class="gauge-card">
+      <div class="gauge-circle">
+        <svg class="gauge-svg" viewBox="0 0 100 100">
+          <defs>
+            <linearGradient id="gauge-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#6366f1" />
+              <stop offset="100%" stop-color="#06b6d4" />
+            </linearGradient>
+          </defs>
+          <circle class="gauge-bg" cx="50" cy="50" r="45"></circle>
+          <circle class="gauge-progress" id="gauge-bar" cx="50" cy="50" r="45"></circle>
+        </svg>
+        <div class="gauge-text">
+          <span class="gauge-val" id="scroll-percentage">0%</span>
+          <span class="gauge-lbl" id="scroll-status">Current</span>
+        </div>
+      </div>
+
+      <div class="action-grid">
+        <button class="btn-action btn-primary" id="btn-save-now">
+          <span>📌 Save Current Mark</span>
+        </button>
+        <button class="btn-action" id="btn-restore-now">
+          <span>🚀 Restore Saved</span>
+        </button>
+        <button class="btn-action" id="btn-add-pin">
+          <span>🏷️ Add Custom Pin</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <span>Saved Pins on this Page</span>
+      <span id="pin-count" style="font-size:11px; font-weight:normal;">0 pins</span>
+    </div>
+
+    <div class="pin-list" id="pins-container">
+      <!-- Injected via popup.js -->
+    </div>
+  </main>
+
+  <!-- Tab 2: Saved Sites -->
+  <main class="tab-content" id="tab-saved">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="search-sites" placeholder="Search saved pages by title or domain...">
+    </div>
+
+    <div class="sites-list" id="saved-sites-container">
+      <!-- Injected via popup.js -->
+    </div>
+
+    <div style="margin-top:16px; text-align:center;">
+      <button class="btn-action" id="btn-clear-all" style="width:100%; color:#ef4444; border-color:rgba(239,68,68,0.3);">
+        🗑️ Clear All Saved Scroll Data
+      </button>
+    </div>
+  </main>
+
+  <!-- Tab 3: Settings -->
+  <main class="tab-content" id="tab-settings">
+    <div class="setting-row" style="background: rgba(99, 102, 241, 0.1); padding: 12px; border-radius: var(--radius-md); border: 1px solid rgba(99, 102, 241, 0.25); margin-bottom: 12px;">
+      <div class="setting-info">
+        <span class="setting-title" style="color: #ffffff; font-weight: 700;">⚡ Master Extension Power</span>
+        <span class="setting-desc">Enable or disable all ScrollMark functionality globally.</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="setting-master-enable" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-info">
+        <span class="setting-title">Auto-Restore Scroll</span>
+        <span class="setting-desc">Automatically jump to your saved position when revisiting a page.</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="setting-auto-restore" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-info">
+        <span class="setting-title">Floating Helper Badge</span>
+        <span class="setting-desc">Show a subtle jump button at the bottom-right of websites.</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="setting-floating-badge" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-info">
+        <span class="setting-title">Smooth Animations</span>
+        <span class="setting-desc">Use smooth scrolling when restoring positions.</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="setting-smooth-scroll" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-info">
+        <span class="setting-title">Extension Icon Badge</span>
+        <span class="setting-desc">Display scroll percentage overlay on the toolbar icon.</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="setting-badge-pct" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="section-title">Data Backup & Restore</div>
+    <div style="display:flex; gap:10px;">
+      <button class="btn-action" id="btn-export-data" style="flex:1;">
+        📥 Export Data
+      </button>
+      <button class="btn-action" id="btn-import-data" style="flex:1;">
+        📤 Import Data
+      </button>
+      <input type="file" id="import-file-input" accept=".json" style="display:none;">
+    </div>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>
