@@ -1,0 +1,26 @@
+# Development & System Junk
+.DS_Store
+Thumbs.db
+*.log
+
+# Environment / Secret keys (Never commit your extension keys)
+.env
+.env.*
+*.pem
+*.key
+
+# IDE / Code Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+
+# Build Outputs (If using a bundler like Webpack, Vite, or Rollup)
+dist/
+build/
+out/
+node_modules/
+
+# Zip files (Generated when packaging your extension for the Chrome Web Store)
+*.zip
+*.crx
