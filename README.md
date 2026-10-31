@@ -5,7 +5,6 @@
 ![Manifest V3](https://img.shields.io/badge/Manifest-V3-blue?style=for-the-badge&logo=googlechrome&logoColor=white)
 ![Chrome](https://img.shields.io/badge/Browser-Chrome%20%7C%20Edge%20%7C%20Brave-success?style=for-the-badge&logo=google-chrome&logoColor=white)
 ![Privacy](https://img.shields.io/badge/Privacy-100%25%20Local%20Storage-brightgreen?style=for-the-badge&logo=shield)
-![License](https://img.shields.io/badge/License-MIT-orange?style=for-the-badge)
 
 <br/>
 
