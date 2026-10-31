@@ -96,7 +96,7 @@ ScrollMark runs on any Chromium-based browser (Google Chrome, Microsoft Edge, Br
 
 1. **Download or Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/my_Extension.git
+   git clone https://github.com/omerbilgetecan/scroll-mark-extension.git
    ```
    *(Or download and extract the project `.zip` / folder)*
 
@@ -203,4 +203,6 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 
 <div align="center">
   <sub>Built with ❤️ for readers, researchers, and developers.</sub>
+  <br/>
+  <sub>Made by Antigravity — Out of necessity.</sub>
 </div>
